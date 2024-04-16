@@ -41,11 +41,11 @@ func (dao *GORMTagDAO) BatchCreate(ctx context.Context, tags []Tag) error {
 
 type Tag struct {
 	Id       int64 `gorm:"primaryKey,autoIncrement"`
-	TaggerId int64
-	Biz      uint32
-	BizId    int64
-	Tag      uint32
-	TagType  uint8
+	TaggerId int64 `gorm:"uniqueIndex:tagger_biz_bizId_tagType_tag"`
+	Biz      int32 `gorm:"uniqueIndex:tagger_biz_bizId_tagType_tag"`
+	BizId    int64 `gorm:"uniqueIndex:tagger_biz_bizId_tagType_tag"`
+	TagType  uint8 `gorm:"uniqueIndex:tagger_biz_bizId_tagType_tag"`
+	Tag      int32 `gorm:"uniqueIndex:tagger_biz_bizId_tagType_tag"`
 	Utime    int64
 	Ctime    int64
 }
