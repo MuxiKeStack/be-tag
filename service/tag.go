@@ -22,13 +22,13 @@ func NewTagService(repo repository.TagRepository) TagService {
 }
 
 func (s *tagService) AttachAssessmentTags(ctx context.Context, taggerId int64, biz tagv1.Biz, bizId int64, tags []tagv1.AssessmentTag) error {
-	return s.repo.BindTagsToBiz(ctx, taggerId, biz, bizId, slice.Map(tags, func(idx int, src tagv1.AssessmentTag) uint32 {
-		return uint32(src)
+	return s.repo.BindTagsToBiz(ctx, taggerId, biz, bizId, slice.Map(tags, func(idx int, src tagv1.AssessmentTag) int32 {
+		return int32(src)
 	}), domain.TagTypeAssessment)
 }
 
 func (s *tagService) AttachFeatureTags(ctx context.Context, taggerId int64, biz tagv1.Biz, bizId int64, tags []tagv1.FeatureTag) error {
-	return s.repo.BindTagsToBiz(ctx, taggerId, biz, bizId, slice.Map(tags, func(idx int, src tagv1.FeatureTag) uint32 {
-		return uint32(src)
+	return s.repo.BindTagsToBiz(ctx, taggerId, biz, bizId, slice.Map(tags, func(idx int, src tagv1.FeatureTag) int32 {
+		return int32(src)
 	}), domain.TagTypeFeature)
 }

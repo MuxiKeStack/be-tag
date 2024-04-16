@@ -9,7 +9,7 @@ import (
 )
 
 type TagRepository interface {
-	BindTagsToBiz(ctx context.Context, taggerId int64, biz tagv1.Biz, bizId int64, tags []uint32, tagType domain.TagType) error
+	BindTagsToBiz(ctx context.Context, taggerId int64, biz tagv1.Biz, bizId int64, tags []int32, tagType domain.TagType) error
 }
 
 type tagRepository struct {
@@ -21,11 +21,11 @@ func NewTagRepository(dao dao.TagDAO) TagRepository {
 }
 
 func (repo *tagRepository) BindTagsToBiz(ctx context.Context, taggerId int64, biz tagv1.Biz, bizId int64,
-	tags []uint32, tagType domain.TagType) error {
-	return repo.dao.BatchCreate(ctx, slice.Map(tags, func(idx int, src uint32) dao.Tag {
+	tags []int32, tagType domain.TagType) error {
+	return repo.dao.BatchCreate(ctx, slice.Map(tags, func(idx int, src int32) dao.Tag {
 		return dao.Tag{
 			TaggerId: taggerId,
-			Biz:      uint32(biz),
+			Biz:      int32(biz),
 			BizId:    bizId,
 			Tag:      src,
 			TagType:  tagType.Uint8(),
