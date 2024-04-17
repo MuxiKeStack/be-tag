@@ -22,8 +22,8 @@ func InitGRPCServer() grpcx.Server {
 	db := ioc.InitDB(logger)
 	tagDAO := dao.NewGORMTagDAO(db)
 	tagRepository := repository.NewTagRepository(tagDAO)
-	tagService := service.NewTagService(tagRepository)
-	tagServiceServer := grpc.NewTagServiceServer(tagService)
+	generalTagService := service.NewGeneralTagService(tagRepository)
+	tagServiceServer := grpc.NewTagServiceServer(generalTagService)
 	client := ioc.InitEtcdClient()
 	server := ioc.InitGRPCxKratosServer(tagServiceServer, client, logger)
 	return server

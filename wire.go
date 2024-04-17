@@ -16,7 +16,7 @@ func InitGRPCServer() grpcx.Server {
 	wire.Build(
 		ioc.InitGRPCxKratosServer,
 		grpc.NewTagServiceServer,
-		service.NewTagService,
+		service.NewGeneralTagService,
 		repository.NewTagRepository,
 		dao.NewGORMTagDAO,
 		ioc.InitEtcdClient,
