@@ -10,3 +10,8 @@ const (
 	TagTypeAssessment TagType = iota
 	TagTypeFeature
 )
+
+type CountTagItem struct {
+	Tag   int32
+	Count int64
+}
