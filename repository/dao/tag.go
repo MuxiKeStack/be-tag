@@ -17,6 +17,7 @@ type GORMTagDAO struct {
 	db *gorm.DB
 }
 
+// TODO 为这个查询优化设计索引
 func (dao *GORMTagDAO) CountTagsByBizTagger(ctx context.Context, biz int32, bizId int64, taggerIds []int64,
 	tagType uint8) ([]CountTagItem, error) {
 	var countItems []CountTagItem
