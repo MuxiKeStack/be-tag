@@ -28,6 +28,7 @@ func InitGRPCxKratosServer(tagServer *grpc.TagServiceServer, ecli *clientv3.Clie
 		kgrpc.Address(cfg.Addr),
 		kgrpc.Middleware(recovery.Recovery()),
 		kgrpc.UnaryInterceptor(grpc2.ServerTransactionInterceptor),
+		kgrpc.Timeout(time.Second*100),
 	)
 	tagServer.Register(server)
 	return &grpcx.KratosServer{

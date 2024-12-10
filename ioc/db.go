@@ -12,7 +12,7 @@ import (
 )
 
 func InitDB(l logger.Logger) *gorm.DB {
-	return InitATMysqlDB(l)
+	return InitMysqlDB(l)
 }
 
 func InitMysqlDB(l logger.Logger) *gorm.DB {
